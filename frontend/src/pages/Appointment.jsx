@@ -4,7 +4,9 @@ import { AppContext } from '../context/AppContext'
 import { assets } from '../assets/assets'
 import RelatedDoctors from '../components/RelatedDoctors'
 import axios from 'axios'
-import { toast } from 'react-toastify'
+import { toast } from 'react-toastify';
+
+import createMeetingLink from "../components/Scheduler.jsx";
 
 const Appointment = () => {
 
@@ -98,11 +100,13 @@ const Appointment = () => {
         let month = date.getMonth() + 1
         let year = date.getFullYear()
 
-        const slotDate = day + "_" + month + "_" + year
+        const slotDate = day + "_" + month + "_" + year;
+
+        const meetingLink = createMeetingLink();
 
         try {
 
-            const { data } = await axios.post(backendUrl + '/api/user/book-appointment', { docId, slotDate, slotTime }, { headers: { token } })
+            const { data } = await axios.post(backendUrl + '/api/user/book-appointment', { docId, slotDate, slotTime ,meetingLink}, { headers: { token } })
             if (data.success) {
                 toast.success(data.message)
                 getDoctosData()

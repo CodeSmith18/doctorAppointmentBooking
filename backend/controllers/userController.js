@@ -135,7 +135,8 @@ const bookAppointment = async (req, res) => {
 
     try {
 
-        const { userId, docId, slotDate, slotTime } = req.body
+        const { userId, docId, slotDate, slotTime ,meetingLink} = req.body;
+
         const docData = await doctorModel.findById(docId).select("-password")
 
         if (!docData.available) {
@@ -158,6 +159,7 @@ const bookAppointment = async (req, res) => {
         }
 
         const userData = await userModel.findById(userId).select("-password")
+        console.log(meetingLink);
 
         delete docData.slots_booked
 
@@ -169,7 +171,8 @@ const bookAppointment = async (req, res) => {
             amount: docData.fees,
             slotTime,
             slotDate,
-            date: Date.now()
+            date: Date.now(),
+            meetingLink
         }
 
         const newAppointment = new appointmentModel(appointmentData)
