@@ -1,0 +1,39 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+# ------------------------
+# Common ignores for all
+# ------------------------
+
+node_modules/
+.env
+.DS_Store
+dist/
+build/
+
+# ------------------------
+# Backend folder ignores
+# ------------------------
+backend/node_modules/
+backend/.env
+backend/dist/
+backend/build/
+backend/logs/
+backend/*.log
+
+# ------------------------
+# Frontend folder ignores
+# ------------------------
+frontend/node_modules/
+frontend/.env
+frontend/dist/
+frontend/build/
+frontend/*.log
+
+# ------------------------
+# Admin folder ignores
+# ------------------------
+admin/node_modules/
+admin/.env
+admin/dist/
+admin/build/
+admin/*.log
