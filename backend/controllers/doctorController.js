@@ -1,6 +1,9 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import tempdoctorModel from "../models/tempDoc.js";
 import doctorModel from "../models/doctorModel.js";
+import validator from 'validator';
+
 import appointmentModel from "../models/appointmentModel.js";
 
 // API for doctor Login 
@@ -9,7 +12,7 @@ const loginDoctor = async (req, res) => {
     try {
 
         const { email, password } = req.body
-        const user = await doctorModel.findOne({ email })
+        const user = await tempdoctorModel.findOne({ email })
 
         if (!user) {
             return res.json({ success: false, message: "Invalid credentials" })
@@ -18,12 +21,71 @@ const loginDoctor = async (req, res) => {
         const isMatch = await bcrypt.compare(password, user.password)
 
         if (isMatch) {
+            console.log("jai ho " + req.body);
             const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
             res.json({ success: true, token })
         } else {
             res.json({ success: false, message: "Invalid credentials" })
         }
 
+
+    } catch (error) {
+        console.log(error)
+        res.json({ success: false, message: error.message })
+    }
+}
+//doctor register
+
+const registerDoctor = async (req, res) => {
+  try {
+    const { name, email, password, speciality, degree, experience, about, fees, address } = req.body;
+
+    if (!name || !email || !password || !speciality || !degree || !experience || !about || !fees || !address) {
+      return res.status(400).json({ success: false, message: "Missing Details" });
+    }
+
+    if (!validator.isEmail(email)) {
+      return res.status(400).json({ success: false, message: "Please enter a valid email" });
+    }
+
+    if (password.length < 8) {
+      return res.status(400).json({ success: false, message: "Please enter a strong password" });
+    }
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const doctorData = {
+      name,
+      email,
+      password: hashedPassword,
+      speciality,
+      degree,
+      experience,
+      about,
+      fees,
+      address,
+      date: Date.now()
+    };
+
+    const newDoctor = new tempdoctorModel(doctorData);
+    await newDoctor.save();
+
+    res.status(201).json({ success: true, message: 'Doctor Added' });
+
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+const getProfile = async (req, res) => {
+
+    try {
+        const { userId } = req.body
+        const userData = await tempdoctorModel.findById(userId).select('-password')
+
+        res.json({ success: true, userData })
 
     } catch (error) {
         console.log(error)
@@ -192,6 +254,8 @@ const doctorDashboard = async (req, res) => {
 
 export {
     loginDoctor,
+    getProfile,
+    registerDoctor,
     appointmentsDoctor,
     appointmentCancel,
     doctorList,

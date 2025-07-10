@@ -1,7 +1,21 @@
 import React from 'react'
 import { assets } from '../assets/assets'
+ import { NavLink, useNavigate } from 'react-router-dom'
+import { useContext } from 'react'
+import { AppContext } from '../context/AppContext'
+ 
 
 const Header = () => {
+    const {token } = useContext(AppContext)
+    console.log(token);
+    const navigate = useNavigate()
+
+    const loginUser = ()=> {
+         navigate('/login/user')
+    }
+    const loginDoc = ()=> {
+         navigate('/login/doctor')
+    }
     return (
         <div className='flex flex-col md:flex-row flex-wrap bg-primary rounded-lg px-6 md:px-10 lg:px-20 '>
 
@@ -14,9 +28,22 @@ const Header = () => {
                     <img className='w-28' src={assets.group_profiles} alt="" />
                     <p>Simply browse through our extensive list of trusted doctors, <br className='hidden sm:block' /> schedule your appointment hassle-free.</p>
                 </div>
-                <a href='#speciality' className='flex items-center gap-2 bg-white px-8 py-3 rounded-full text-[#595959] text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300'>
+                {/* <a href='#speciality' className='flex items-center gap-2 bg-white px-8 py-3 rounded-full text-[#595959] text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300'>
                     Book appointment <img className='w-3' src={assets.arrow_icon} alt="" />
-                </a>
+                </a> */}
+
+                {token == ''  ?(
+                    <div className='flex gap-6 mt-6'>
+                    <button onClick={loginDoc} className='flex gap-2 items-center  bg-white px-8 py-3 rounded-full text-[#595959] text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300'>Login As Doctor</button>
+                     <button onClick={loginUser} className='flex gap-2 items-center  bg-white px-8 py-3 rounded-full text-[#595959] text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300'>Login As User</button>
+
+                </div>
+                ):(
+                    <a href='#speciality' className='flex items-center gap-2 bg-white px-8 py-3 rounded-full text-[#595959] text-sm m-auto md:m-0 hover:scale-105 transition-all duration-300'>
+                        Book appointment <img className='w-3' src={assets.arrow_icon} alt="" />
+                    </a> 
+                )}
+
             </div>
 
             {/* --------- Header Right --------- */}
