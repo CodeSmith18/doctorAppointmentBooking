@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SERVER_URL = import.meta.env.VITE_SERVER_URL;
+const SERVER_URL = import.meta.env.VITE_BACKEND_URL;
 
 export default async function createMeetingLink() {
   try {
@@ -9,7 +9,9 @@ export default async function createMeetingLink() {
     });
     const id = res.data.meetingId;
     console.log(id);
-    return `/meeting/${id}`; // relative link
+    // return `/meeting/${id}`; // relative link
+    return `/meeting/${id}`;
+
    
   } catch (error) {
     console.error("Error creating meeting:", error);

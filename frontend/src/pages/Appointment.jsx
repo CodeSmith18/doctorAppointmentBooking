@@ -102,7 +102,8 @@ const Appointment = () => {
 
         const slotDate = day + "_" + month + "_" + year;
 
-        const meetingLink = createMeetingLink();
+        const meetingLink = await createMeetingLink();
+        alert(meetingLink);
 
         try {
 
