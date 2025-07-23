@@ -48,8 +48,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Paths to Vite build outputs
-const userDist = path.join(__dirname, "../frontend/dist");
-const adminDist = path.join(__dirname, "../admin/dist");
+const userDist = path.join(__dirname, "./frontend/dist");
+const adminDist = path.join(__dirname, "./admin/dist");
 
 // Serve static files
 app.use("/", express.static(userDist));
