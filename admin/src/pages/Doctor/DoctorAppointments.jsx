@@ -2,7 +2,10 @@ import React from 'react'
 import { useContext, useEffect,useState } from 'react'
 import { DoctorContext } from '../../context/DoctorContext'
 import { AppContext } from '../../context/AppContext'
-import { assets } from '../../assets/assets'
+import { assets } from '../../assets/assets';
+  const fend = "";
+
+
 
 const DoctorAppointments = () => {
 
@@ -48,6 +51,7 @@ const DoctorAppointments = () => {
           <p>Meeting Link</p>
         </div>
         {appointments.map((item, index) => (
+          
   <div
     className='flex flex-wrap justify-between max-sm:gap-5 max-sm:text-base sm:grid grid-cols-[0.5fr_1.3fr_1fr_1fr_1.6fr_1fr_1fr] gap-1 items-center text-gray-500 py-3 px-6 border-b hover:bg-gray-50'
     key={index}
@@ -79,13 +83,15 @@ const DoctorAppointments = () => {
     {/* ✅ Separate Meeting Link Column */}
     <p>
       <a
-        href={item.meetingLink}
-        target="_blank"
-        rel="noopener noreferrer"
-        className='text-blue-500 underline text-sm'
-      >
-         Meeting Link
-      </a>
+  href={fend + item.meetingLink}
+  target="_blank"
+  rel="noopener noreferrer"
+  className='text-blue-500 underline text-sm'
+  onClick={() => console.log("Meeting link clicked:", fend+item.meetingLink)}
+>
+  Meeting Link
+</a>
+
     </p>
 
     {/* Status / Actions */}
