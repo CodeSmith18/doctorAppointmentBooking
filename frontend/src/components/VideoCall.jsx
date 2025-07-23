@@ -23,12 +23,19 @@ export default function VideoCall({ meetingId }) {
   const [audioOutputs, setAudioOutputs] = useState([]);
   const [selectedAudioOutput, setSelectedAudioOutput] = useState("");
 
-  // Enumerate devices and set initial camera/audio output
+  // Request permission and enumerate devices
   useEffect(() => {
     async function getDevices() {
-      console.log("🔍 Enumerating media devices...");
+      console.log("🔍 Requesting media permissions...");
 
       try {
+        // Ask for permission first
+        const tempStream = await navigator.mediaDevices.getUserMedia({
+          audio: true,
+          video: true,
+        });
+        tempStream.getTracks().forEach((track) => track.stop()); // stop dummy tracks
+
         const devices = await navigator.mediaDevices.enumerateDevices();
 
         const videoDevices = devices.filter((d) => d.kind === "videoinput");
@@ -55,7 +62,7 @@ export default function VideoCall({ meetingId }) {
           console.log("✅ Selected Camera ID:", videoDevices[0].deviceId);
         }
       } catch (err) {
-        console.error("❌ Error while getting media devices:", err);
+        console.error("❌ Error while requesting media permissions:", err);
       }
     }
 
@@ -91,7 +98,6 @@ export default function VideoCall({ meetingId }) {
 
         localRef.current.srcObject = stream;
 
-        // For some browsers manual play helps
         localRef.current.onloadedmetadata = () => {
           localRef.current.play().catch((e) => console.warn("Play failed", e));
         };
