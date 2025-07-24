@@ -1,3 +1,4 @@
-Contributors - 
-Ritik Raj (BTECH/10856/22)
-Vaibhav Kumar Gupta (BTECH/10048/22)
+### 👥 Contributors
+
+- [**Ritik Raj**](https://github.com/CodeSmith18) — B.Tech (Roll No: 10856 /)  
+- [**Vaibhav Kumar Gupta**](https://github.com/Vaibhavkg04) — B.Tech (Roll No: 10048 )
