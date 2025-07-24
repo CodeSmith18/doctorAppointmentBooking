@@ -25,19 +25,9 @@ A full-stack doctor appointment platform built with the **MERN** stack, enabling
 ## 🌐 Live Demo
 
 [🔗 Live Application](https://doctorappointmentbooking-m1os.onrender.com/)
-[📁 GitHub Repository](https://github.com/CodeSmith18/doctor-booking-platform)
+[📁 GitHub Repository](https://github.com/CodeSmith18/doctor-booking-platform](https://github.com/CodeSmith18/doctorAppointmentBooking)
 
----
 
-## 📸 Screenshots
-
-<!-- Replace with actual screenshots if available -->
-
-![Home Page](./screenshots/home.png)
-![Video Call](./screenshots/video-call.png)
-![Dashboard](./screenshots/dashboard.png)
-
----
 
 ## 📁 Folder Structure
 
