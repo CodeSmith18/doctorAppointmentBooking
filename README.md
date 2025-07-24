@@ -25,7 +25,7 @@ A full-stack doctor appointment platform built with the **MERN** stack, enabling
 ## 🌐 Live Demo
 
 [🔗 Live Application](https://doctorappointmentbooking-m1os.onrender.com/)
-[📁 GitHub Repository](https://github.com/CodeSmith18/doctor-booking-platform](https://github.com/CodeSmith18/doctorAppointmentBooking)
+[📁 GitHub Repository](https://github.com/CodeSmith18/doctorAppointmentBooking)
 
 
 
@@ -138,7 +138,7 @@ This project is licensed under the [MIT License](LICENSE).
 
 **Vaibhav Kumar Gupta**
 📧 [btech10048.22@bitmesra.ac.in](mailto:btech10048.22@bitmesra.ac.in)
-🔗 [LinkedIn](https://www.linkedin.com/in/vaibhav-gupta)
+🔗 [LinkedIn]([https://www.linkedin.com/in/vaibhav-gupta](https://www.linkedin.com/in/vaibhav-gupta-9b03a7270/))
 🐙 [GitHub](https://github.com/your-vaibhav-github)
 
 ---
